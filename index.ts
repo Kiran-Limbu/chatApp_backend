@@ -27,7 +27,6 @@ io.on("connection", (socket) => {
 
   //listen the "joinRoom" event from the client
   socket.on("joinRoom", async (userName) => {
-    console.log(`${userName} is joining the group .`);
     //this .join method is used to join the chat
     await socket.join(ROOM);
 
@@ -39,9 +38,15 @@ io.on("connection", (socket) => {
 
   //listen the client msg
   socket.on("sendMsg", (msg) =>{
-    console.log(`user message: ${msg}`)
-
     socket.to(ROOM).emit("msgSendNotify", msg);
+  });
+
+  socket.on("typingNotify", (userName) =>{
+    socket.to(ROOM).emit("typingNotify", userName);
+  });
+
+  socket.on("stopTypingNotify", (userName) =>{
+    socket.to(ROOM).emit("stopTypingNotify", userName);
   })
 });
 
