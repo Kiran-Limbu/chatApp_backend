@@ -9,6 +9,7 @@
     "@types/node": "^26.1.0"
   },
   "scripts": {
+    "start": "bun index.js",
     "dev": "nodemon index.ts"
   },
   "peerDependencies": {
