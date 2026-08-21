@@ -16,7 +16,7 @@ const server = http.createServer(app);
 //socket io setup
 const io = new Server(server, {
   cors: {
-    origin:["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://mero-chate.vercel.app"],
   },
 });
 
@@ -32,27 +32,24 @@ io.on("connection", (socket) => {
 
     //sent the userName to all member who join the roomNotice room
     // io.to(ROOM).emit("userJoinRoomNotify", userName);
- 
+
     socket.to(ROOM).emit("userJoinRoomNotify", userName);
   });
 
   //listen the client msg
-  socket.on("sendMsg", (msg) =>{
+  socket.on("sendMsg", (msg) => {
     socket.to(ROOM).emit("msgSendNotify", msg);
   });
 
-  socket.on("typingNotify", (userName) =>{
+  socket.on("typingNotify", (userName) => {
     socket.to(ROOM).emit("typingNotify", userName);
   });
 
-  socket.on("stopTypingNotify", (userName) =>{
+  socket.on("stopTypingNotify", (userName) => {
     socket.to(ROOM).emit("stopTypingNotify", userName);
   })
 });
 
-app.get("/", (req, res) => {
-  res.send("ha ha server chal gaya");
-});
 
 
 //listing the server on port 4000 or 3000
