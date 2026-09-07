@@ -12,7 +12,7 @@
     "@types/passport-google-oauth20": "^2.0.17"
   },
   "scripts": {
-    "start": "bun index.ts",
+    "start": "node index.ts",
     "dev": "nodemon index.ts"
   },
   "peerDependencies": {
