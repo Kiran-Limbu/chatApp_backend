@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000;
 // middleware of express
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', // Explicitly allow your frontend
+  origin: ["http://localhost:5173", "https://mero-chate.vercel.app"], // Explicitly allow your frontend
   credentials: true // Required for credentials mode 'include'
 }));
 
