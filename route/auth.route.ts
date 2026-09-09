@@ -1,6 +1,7 @@
 import express from "express"
 import passport from "passport";
 import createAuthToken from "../utils/createToken.ts";
+import userModel from "../model/user.model.ts";
 
 const router = express.Router();
 
@@ -31,13 +32,11 @@ router.get(
     failureRedirect: process.env.CLIENT_URL,
   }),
 
-  async (req, res) => {
+   async (req, res) => {
     try {
-      const user = req.user as {
-        _id: string;
-      };
+      const user = await userModel.find({});
 
-      await createAuthToken(res, user._id);
+       createAuthToken(res, user[0]._id);
 
       res.redirect(`${process.env.CLIENT_URL}/wellcome`);
     } catch (error) {

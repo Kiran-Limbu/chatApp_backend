@@ -17,8 +17,8 @@ export default async function createAuthToken(res: any, userId: any) {
        //local devlopment
        httpOnly: true,
        sameSite: "lax",
-    secure: false,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: false,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
        */
   });
 

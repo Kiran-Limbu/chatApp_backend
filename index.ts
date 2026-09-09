@@ -81,6 +81,8 @@ io.on("connection", (socket) => {
 
 //route for the auth
 app.use("/api/auth", authRoute);
+
+//route fot the users
 app.use("/api/user", userRoute);
 
 //listing the server on port 4000 or 3000

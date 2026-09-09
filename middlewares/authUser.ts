@@ -1,28 +1,23 @@
 import jwt from "jsonwebtoken";
+import userModel from "../model/user.model.ts";
 
-const authMiddleware = (req, res, next) => {
-  try {
-    const token = req.cookies.jwtAuth;
+const authMiddleware = async (req, res, next) => {
+  const token = req.cookies.jwtAuth;
+  if (token) {
+    try {
+      const jwtSecret = process.env.JWT_SECRET as string;
+      const decoded =  jwt.verify(token, jwtSecret);
+     
 
-    if (!token) {
-      return res.status(401).json({
-        message: "Not authenticated",
-      });
+      req.user = await userModel.findById(decoded.userId);
+      next();
+    } catch (error) {
+      res.status(401);
+      throw new Error("Unauthorized token, token failed .");
     }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
-      userId: string;
-    };
-
-    req.user = decoded;
-
-    next();
-  } catch (error) {
-    console.error(error);
-
-    return res.status(401).json({
-      message: "Invalid or expired token",
-    });
+  } else {
+    res.status(401);
+    throw new Error("Unauthorized token, no token .");
   }
 };
 

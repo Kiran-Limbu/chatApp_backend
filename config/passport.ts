@@ -14,7 +14,6 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
-        console.log(profile);
         const googleId = profile.id;
         const userName = profile.displayName;
         const avatar = profile.photos?.[0]?.value;

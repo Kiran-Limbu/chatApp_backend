@@ -10,14 +10,8 @@ router.post("/", async (req, res) =>{
     res.status(200).json(findUser)
 })
 router.get("/me", authMiddleware, async (req, res) => {
-    try {
-    if (!req.user) {
-      return res.status(401).json({
-        message: "Not authenticated",
-      });
-    }
-
-    const user = await userModel.findById(req.user.userId);
+  try {
+    const user = await userModel.findById(req.user);
 
     if (!user) {
       return res.status(404).json({
