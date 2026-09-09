@@ -4,10 +4,9 @@ import authMiddleware from "../middlewares/authUser.ts";
 
 const router = express.Router();
 
-
-router.get("/me",  async (req, res) => {
+router.get("/me", async (req, res) => {
   try {
-    const user = await userModel.findById(req.user);
+    const user = await userModel.find({});
 
     if (!user) {
       return res.status(404).json({
@@ -15,9 +14,7 @@ router.get("/me",  async (req, res) => {
       });
     }
 
-    return res.status(200).json({
-      user,
-    });
+    return res.status(200).json(user);
   } catch (error) {
     console.error("Get current user error:", error);
 
