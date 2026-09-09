@@ -5,7 +5,7 @@ import authMiddleware from "../middlewares/authUser.ts";
 const router = express.Router();
 
 
-router.get("/me", authMiddleware, async (req, res) => {
+router.get("/me",  async (req, res) => {
   try {
     const user = await userModel.findById(req.user);
 
