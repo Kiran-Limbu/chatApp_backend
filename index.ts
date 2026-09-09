@@ -17,8 +17,8 @@ const port = process.env.PORT || 3000;
 // middleware of express
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173", "https://mero-chate.vercel.app"], // Explicitly allow your frontend
-  credentials: true // Required for credentials mode 'include'
+  origin: ["http://localhost:5173", "https://mero-chate.vercel.app"], 
+  credentials: true 
 }));
 
 //setup the cookie in our middlewere;

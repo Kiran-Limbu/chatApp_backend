@@ -34,9 +34,9 @@ router.get(
 
    async (req, res) => {
     try {
-      const user = await userModel.find({});
+        const userId = req.user;
 
-       createAuthToken(res, user[0]._id);
+       createAuthToken(res, userId);
 
       res.redirect(`${process.env.CLIENT_URL}/wellcome`);
     } catch (error) {
