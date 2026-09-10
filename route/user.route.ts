@@ -4,7 +4,7 @@ import authMiddleware from "../middlewares/authUser.ts";
 
 const router = express.Router();
 
-router.get("/me/:id", authMiddleware, async (req, res) => {
+router.get("/get/:id", authMiddleware, async (req, res) => {
   try {
      const userId = req.params.id;
      if(!userId){
