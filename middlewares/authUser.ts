@@ -12,12 +12,10 @@ const authMiddleware = async (req, res, next) => {
       req.user = await userModel.findById(decoded.userId);
       next();
     } catch (error) {
-      res.status(401);
-      throw new Error("Unauthorized token, token failed .");
+      res.status(401).json({message: "Unauthorized token, token failed ."});
     }
   } else {
-    res.status(401);
-    throw new Error("Unauthorized token, no token .");
+     res.status(401).json({message: "Unauthorized token, no token ."});
   }
 };
 

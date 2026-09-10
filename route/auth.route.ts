@@ -38,7 +38,7 @@ router.get(
 
        createAuthToken(res, userId);
 
-      res.redirect(`${process.env.CLIENT_URL}/wellcome`);
+      res.redirect(`${process.env.CLIENT_URL}/get/${userId._id}`);
     } catch (error) {
       console.error("Token creation failed:", error);
 
