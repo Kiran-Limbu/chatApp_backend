@@ -34,11 +34,11 @@ router.get(
 
    async (req, res) => {
     try {
-        const userId = req.user;
+        const user = req.user;
+        
+       createAuthToken(res, user._id);
 
-       createAuthToken(res, userId);
-
-      res.redirect(`${process.env.CLIENT_URL}/get/${userId._id}`);
+      res.redirect(`${process.env.CLIENT_URL}/get/${user._id}`);
     } catch (error) {
       console.error("Token creation failed:", error);
 

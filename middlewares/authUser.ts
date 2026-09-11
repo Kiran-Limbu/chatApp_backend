@@ -3,7 +3,7 @@ import type { Request, Response, NextFunction } from 'express';
 import userModel from "../model/user.model.ts";
 
 const authMiddleware = async (req: Request, res: Response, next: NextFunction ) => {
-  const token = req.cookies.jwtAuth;
+  const token = req.cookies?.jwtAuth;
   if (token) {
     try {
       const jwtSecret = process.env.JWT_SECRET as string;

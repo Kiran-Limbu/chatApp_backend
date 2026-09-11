@@ -10,7 +10,10 @@ import { Server } from "socket.io";
 import authRoute from "./route/auth.route.ts"
 import userRoute from "./route/user.route.ts"
 import connectToDB from "./config/db/db.ts";
+
 dotenv.config();
+//connect To db function:
+connectToDB();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,7 +24,7 @@ app.use(cookieParser());
 // middleware of express
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173", "https://mero-chate.vercel.app"], 
+  origin: ["https://mero-chate.vercel.app", "http://localhost:5173"], 
   credentials: true 
 }));
 
@@ -36,9 +39,6 @@ app.use(cookieSession({
 //config the passport 
 app.use(passport.initialize())
 app.use(passport.session())
-
-//connect To db function:
-connectToDB();
 
 //create an server
 const server = http.createServer(app);
