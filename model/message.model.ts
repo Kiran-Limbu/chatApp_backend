@@ -17,10 +17,6 @@ const messageSchema = new mongoose.Schema(
         time: {
             type: Date.now(),
         },
-        userId:[{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }]
     },
 
     {timestamps: true}

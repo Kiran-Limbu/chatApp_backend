@@ -14,15 +14,16 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+//setup the cookie in our middlewere;
+app.use(cookieParser());
+
 // middleware of express
 app.use(express.json());
 app.use(cors({
   origin: ["http://localhost:5173", "https://mero-chate.vercel.app"], 
   credentials: true 
 }));
-
-//setup the cookie in our middlewere;
-app.use(cookieParser());
 
 //config the cookieSession
 app.use(cookieSession({
